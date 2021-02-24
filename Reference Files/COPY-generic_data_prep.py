@@ -1,20 +1,31 @@
-import pandas as pd
-import numpy as np
+# @Author: Shounak Ray <Ray>
+# @Date:   25-Sep-2020 17:09:00:000  GMT-0600
+# @Email:  rijshouray@gmail.com
+# @Filename: COPY-generic_data_prep.py
+# @Last modified by:   Ray
+# @Last modified time: 24-Feb-2021 00:02:66:664  GMT-0700
+# @License: [Private IP]
+
+
 from collections import Counter
 from inspect import currentframe, getframeinfo
-from stringcase import snakecase
-import scipy
-import scipy.stats
-import scipy.signal
-from distfit import distfit
 
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import scipy
+import scipy.signal
+import scipy.stats
+from distfit import distfit
+from stringcase import snakecase
 
 # Insert df
-def prune(df, insert, nan = ''):
+
+
+def prune(df, insert, nan=''):
     df = util_snakify_cols(df)
 
-    df = strict_exclude_nan(df, nan = nan)
+    df = strict_exclude_nan(df, nan=nan)
     if(insert == 'True'):
         df = util_insert_ID(df)
         return df
@@ -24,23 +35,29 @@ def prune(df, insert, nan = ''):
         return 'Incorrect value for "insert" argument.'
 
 # Add id/index columns to df
+
+
 def util_insert_ID(df):
-    df = df.reset_index(0).rename(columns = {'index': 'id'})
+    df = df.reset_index(0).rename(columns={'index': 'id'})
     return df
 
 # Replace all values with certain char (such as ?) with NaN
 # Delete all rows that have any NaN values
 # Delete all columns that only have NaN values
-def strict_exclude_nan(df, nan = ''):
+
+
+def strict_exclude_nan(df, nan=''):
     df = util_snakify_cols(df)
 
     df = util_clean_values(df)
-    df.replace(to_replace = nan, value = np.NaN, inplace = True)
-    df.dropna(axis = 0, how = 'any', inplace = True)
-    df.dropna(axis = 1, how = 'all', inplace = True)
+    df.replace(to_replace=nan, value=np.NaN, inplace=True)
+    df.dropna(axis=0, how='any', inplace=True)
+    df.dropna(axis=1, how='all', inplace=True)
     return df
 
 # Remove unnecesary spaces from column names and df content
+
+
 def util_clean_values(df):
     df.columns = [df.columns[i].strip() for i in range(len(df.columns))]
     df = df.apply(np.vectorize(util_strip))
@@ -49,6 +66,8 @@ def util_clean_values(df):
     return df
 
 # Utility function, return stripped string
+
+
 def util_strip(x):
     if(isinstance(x, str)):
         return x.strip()
@@ -56,6 +75,8 @@ def util_strip(x):
         return x
 
 # Utility function, replaces content of df given list of list and previous column and index names
+
+
 def util_replace_df(lol, before):
     final = pd.DataFrame(lol)
     final.columns = before.columns
@@ -63,22 +84,29 @@ def util_replace_df(lol, before):
     return final
 
 # Utility function, trims dict based on tuple of keys
+
+
 def util_trim_dict(dict, keys):
     final = {k: dict[k] for k in keys}
     return final
 
 # extract top 1-5 values from dict and insert into quant df
+
+
 def util_modify_tops(type_info, _MAX, all_info):
     orig_col_count = type_info.shape[1]
     for i in range(_MAX):
         type_info['Top ' + str(i + 1)] = [1] * type_info.shape[0]
     rel_type = util_trim_dict(all_info, tuple(type_info.index))
-    new_content_type = [list(type_info.values[i][:orig_col_count]) + list(rel_type[type_info.index[i]]) for i in range(len(type_info.index))]
+    new_content_type = [list(type_info.values[i][:orig_col_count]) + list(rel_type[type_info.index[i]])
+                        for i in range(len(type_info.index))]
     type_info = util_replace_df(new_content_type, type_info)
 
     return type_info
 
 # BACKUPS: for getting best distribution
+
+
 def BACKUP_get_best_distribution(data):
     dist_names = ["norm", "exponweib", "weibull_max", "weibull_min", "pareto", "genextreme"]
     dist_results = []
@@ -90,18 +118,20 @@ def BACKUP_get_best_distribution(data):
         params[dist_name] = param
         # Applying the Kolmogorov-Smirnov test
         D, p = st.kstest(data, dist_name, args=param)
-        print("p value for "+dist_name+" = "+str(p))
+        print("p value for " + dist_name + " = " + str(p))
         dist_results.append((dist_name, p))
 
     # select the best fitted distribution
     best_dist, best_p = (max(dist_results, key=lambda item: item[1]))
     # store the name of the best fit and its p value
 
-    print("Best fitting distribution: "+str(best_dist))
-    print("Best p value: "+ str(best_p))
-    print("Parameters for the best fit: "+ str(params[best_dist]))
+    print("Best fitting distribution: " + str(best_dist))
+    print("Best p value: " + str(best_p))
+    print("Parameters for the best fit: " + str(params[best_dist]))
 
     return best_dist, best_p, params[best_dist]
+
+
 def BACKUP_util_get_best_distribution(data):
     dist_names = ["norm", "exponweib", "weibull_max", "weibull_min", "pareto", "genextreme"]
     dist_results = []
@@ -113,20 +143,22 @@ def BACKUP_util_get_best_distribution(data):
         params[dist_name] = param
         # Applying the Kolmogorov-Smirnov test
         D, p = st.kstest(data, dist_name, args=param)
-        print("p value for "+dist_name+" = "+str(p))
+        print("p value for " + dist_name + " = " + str(p))
         dist_results.append((dist_name, p))
 
     # select the best fitted distribution
     best_dist, best_p = (max(dist_results, key=lambda item: item[1]))
     # store the name of the best fit and its p value
 
-    print("Best fitting distribution: "+str(best_dist))
-    print("Best p value: "+ str(best_p))
-    print("Parameters for the best fit: "+ str(params[best_dist]))
+    print("Best fitting distribution: " + str(best_dist))
+    print("Best p value: " + str(best_p))
+    print("Parameters for the best fit: " + str(params[best_dist]))
 
     return best_dist, best_p, params[best_dist]
 
 # outputs dataframe with frequency distribution of specific/random feature
+
+
 def freq_dist(df, pick):
     df = util_snakify_cols(df)
 
@@ -137,14 +169,20 @@ def freq_dist(df, pick):
     else:
         index = df.columns.get_loc(pick)
 
-    if(isinstance(df[df.columns[index]][0], str)): # order by count/value
+    if(isinstance(df[df.columns[index]][0], str)):  # order by count/value
         total_rows = float(df.shape[0])
-        freq_tracker_pct = {str(k): round((v/total_rows) * 100.0, 3) for k, v in sorted(dict(Counter(df[df.columns[index]])).items(), key = lambda item: item[1], reverse = True)}
-        freq_tracker_count = {str(k): v for k,v in sorted(dict(Counter(df[df.columns[index]])).items(), key = lambda item: item[1], reverse = False)}
-    else: # order by number/key
+        freq_tracker_pct = {str(k): round((v / total_rows) * 100.0, 3)
+                            for k, v in sorted(dict(Counter(df[df.columns[index]])).items(),
+                                               key=lambda item: item[1], reverse=True)}
+        freq_tracker_count = {str(k): v for k, v in sorted(
+            dict(Counter(df[df.columns[index]])).items(), key=lambda item: item[1], reverse=False)}
+    else:  # order by number/key
         total_rows = float(df.shape[0])
-        freq_tracker_pct = {str(k): round((v/total_rows) * 100.0, 3) for k, v in sorted(dict(Counter(df[df.columns[index]])).items(), key = lambda item: item[0], reverse = True)}
-        freq_tracker_count = {str(k): v for k,v in sorted(dict(Counter(df[df.columns[index]])).items(), key = lambda item: item[0], reverse = False)}
+        freq_tracker_pct = {str(k): round((v / total_rows) * 100.0, 3)
+                            for k, v in sorted(dict(Counter(df[df.columns[index]])).items(),
+                                               key=lambda item: item[0], reverse=True)}
+        freq_tracker_count = {str(k): v for k, v in sorted(
+            dict(Counter(df[df.columns[index]])).items(), key=lambda item: item[0], reverse=False)}
 
     df_freq = pd.DataFrame(freq_tracker_count.items())
     df_freq[2] = freq_tracker_pct.values()
@@ -155,11 +193,15 @@ def freq_dist(df, pick):
     return df_freq
 
 # Normalize list
+
+
 def util_normalize(list):
-    list = (list - np.min(list))/(np.max(list) - np.min(list))
+    list = (list - np.min(list)) / (np.max(list) - np.min(list))
     return list
 
 # Ensure continuity of list of tuples based on tuple[0]
+
+
 def util_fill_lot(lot):
     X_zipl_func = lot
     X_zipl = X_zipl_func[:2]
@@ -174,12 +216,16 @@ def util_fill_lot(lot):
     return X, Y
 
 # returns smoothened list
+
+
 def util_smooth(y, box_pts):
-    box = np.ones(box_pts)/box_pts
-    y_smooth = np.convolve(y, box, mode = 'same')
+    box = np.ones(box_pts) / box_pts
+    y_smooth = np.convolve(y, box, mode='same')
     return y_smooth
 
 # get skew type string
+
+
 def util_skew_class(skew_score_func):
     if(skew_score_func == 0):
         skew_type_func = 'Perfect Normal'
@@ -193,7 +239,9 @@ def util_skew_class(skew_score_func):
 
 # Returns best distribution and information associated
 # Possible bug: resolution may cause extra index (so lens don't match)
-def generate_dist_fits(df, pick, peak_max = 3, top_dists = 3):
+
+
+def generate_dist_fits(df, pick, peak_max=3, top_dists=3):
     top_dists = int(top_dists)
     df = util_snakify_cols(df)
     pick = snakecase(pick).replace('__', '_')
@@ -203,15 +251,20 @@ def generate_dist_fits(df, pick, peak_max = 3, top_dists = 3):
     #     # BAD INPUT
     #     return -1
 
-    HYPER_ASSOC = {'distr': 'Distribution', 'RSS': 'Root Sum Squared', 'LLE': 'Locally Linear Embedding', 'loc': 'LOC: Mean', 'scale': 'SCALE: Standard Deviation', 'arg': 'Argument(s)'}
-    TAG_NAME_ASSOC = {'beta': 'Beta', 'genextreme': 'Generalized Extreme Value', 't': 'Student’s t', 'norm': 'Normal', 'lognorm': 'Lognormal ', 'gamma': 'Gamma', 'dweibull': 'Double Weibull', 'expon': 'Exponential', 'uniform': 'Uniform', 'pareto': 'Pareto'}
-    MODEL_PARAM_ASSOC = {'beta': ['a', 'b'], 'genextreme': ['c'], 't': ['° of freedom'], 'lognorm': ['s'], 'gamma': ['a'], 'dweibull': ['c'], 'pareto': ['b']}
-    NAME_OBJECT_ASSOC = {'beta': scipy.stats.beta, 'genextreme': scipy.stats.genextreme, 't': scipy.stats.t, 'norm': scipy.stats.norm, 'lognorm': scipy.stats.lognorm, 'gamma': scipy.stats.gamma, 'dweibull': scipy.stats.dweibull, 'expon': scipy.stats.expon, 'uniform': scipy.stats.uniform, 'pareto': scipy.stats.pareto}
+    HYPER_ASSOC = {'distr': 'Distribution', 'RSS': 'Root Sum Squared', 'LLE': 'Locally Linear Embedding',
+                   'loc': 'LOC: Mean', 'scale': 'SCALE: Standard Deviation', 'arg': 'Argument(s)'}
+    TAG_NAME_ASSOC = {'beta': 'Beta', 'genextreme': 'Generalized Extreme Value', 't': 'Student’s t', 'norm': 'Normal',
+                      'lognorm': 'Lognormal ', 'gamma': 'Gamma', 'dweibull': 'Double Weibull', 'expon': 'Exponential',
+                      'uniform': 'Uniform', 'pareto': 'Pareto'}
+    MODEL_PARAM_ASSOC = {'beta': ['a', 'b'], 'genextreme': ['c'], 't': ['° of freedom'], 'lognorm': ['s'],
+                         'gamma': ['a'], 'dweibull': ['c'], 'pareto': ['b']}
+    NAME_OBJECT_ASSOC = {'beta': scipy.stats.beta, 'genextreme': scipy.stats.genextreme, 't': scipy.stats.t,
+                         'norm': scipy.stats.norm, 'lognorm': scipy.stats.lognorm, 'gamma': scipy.stats.gamma,
+                         'dweibull': scipy.stats.dweibull, 'expon': scipy.stats.expon, 'uniform': scipy.stats.uniform,
+                         'pareto': scipy.stats.pareto}
     DEC_ROUND_NUM = 3
 
-
     # getattr(scipy.stats, dir(scipy.stats)[dir(scipy.stats).index(model_name)])
-
 
     # Distribution, Arguments,
     curve_df = pd.DataFrame()
@@ -220,7 +273,7 @@ def generate_dist_fits(df, pick, peak_max = 3, top_dists = 3):
     max = np.max(X)
     min = np.min(X)
     # For exisiting univariate data
-    counts = sorted(list(Counter(X).items()), key = lambda item: item[0])
+    counts = sorted(list(Counter(X).items()), key=lambda item: item[0])
     X_x = np.array([tup[0] for tup in counts])
     X_y = np.array([tup[1] for tup in counts])
 
@@ -240,14 +293,14 @@ def generate_dist_fits(df, pick, peak_max = 3, top_dists = 3):
         X_y_temp = util_smooth(X_y_temp, box)
         box += 5
         peaks = [(i, X_y_temp[i]) for i in scipy.signal.find_peaks(X_y_temp)[0]]
-    peak = sorted(peaks, key = lambda item: item[1])[0]
-    resolution = (max - min)/(len(X_x) - 1)
+    peak = sorted(peaks, key=lambda item: item[1])[0]
+    resolution = (max - min) / (len(X_x) - 1)
 
-    dist = distfit(alpha = 0.05, smooth = 10)
+    dist = distfit(alpha=0.05, smooth=10)
     dist.fit_transform(X)
 
     top_models = dist.summary[:top_dists]
-    top_models = top_models.rename(columns = HYPER_ASSOC)
+    top_models = top_models.rename(columns=HYPER_ASSOC)
 
     for row_i in range(len(top_models)):
         dist_OBJECT = NAME_OBJECT_ASSOC[top_models['Distribution'][row_i]]
@@ -258,7 +311,8 @@ def generate_dist_fits(df, pick, peak_max = 3, top_dists = 3):
         params_val = ''
         for val_i in range(len(params)):
             if(val_i == len(params) - 1 - 1):
-                params_val += MODEL_PARAM_ASSOC[name_val][val_i] + ': ' + str(round(params[val_i], DEC_ROUND_NUM)) + '; '
+                params_val += MODEL_PARAM_ASSOC[name_val][val_i] + \
+                    ': ' + str(round(params[val_i], DEC_ROUND_NUM)) + '; '
             else:
                 params_val += MODEL_PARAM_ASSOC[name_val][val_i] + ': ' + str(round(params[val_i], DEC_ROUND_NUM))
 
@@ -266,12 +320,14 @@ def generate_dist_fits(df, pick, peak_max = 3, top_dists = 3):
 
         # For curve-fit plot
         x_top_dist = np.arange(min, max + resolution, resolution)
-        y_top_dist = dist_OBJECT.pdf(x_top_dist, (*params), scale = scale_val, loc = loc_val)
+        y_top_dist = dist_OBJECT.pdf(x_top_dist, (*params), scale=scale_val, loc=loc_val)
         y_top_dist = util_normalize(y_top_dist)
         # Store information about models in DataFrame
         new_col_names = ['model' + "_X", 'model' + "_Y", 'model_id', 'model_params']
-        new_df = pd.DataFrame(zip(x_top_dist, y_top_dist, [name_val] * len(y_top_dist), [params_val] * len(y_top_dist)), columns = new_col_names)
-        curve_df = pd.concat([curve_df, new_df], axis = 0).reset_index().drop('index', 1)
+        new_df = pd.DataFrame(zip(x_top_dist, y_top_dist,
+                                  [name_val] * len(y_top_dist), [params_val] * len(y_top_dist)),
+                              columns=new_col_names)
+        curve_df = pd.concat([curve_df, new_df], axis=0).reset_index().drop('index', 1)
 
     curve_df['model_id'] = curve_df['model_id'].replace(TAG_NAME_ASSOC)
     pick_df = pd.DataFrame(zip(X_x, X_y))
@@ -284,25 +340,29 @@ def generate_dist_fits(df, pick, peak_max = 3, top_dists = 3):
 
     # plt.figure()
     # a = plt.plot(x_top_dist, y_top_dist)
-    #b = plt.plot(X_x, X_y)
+    # b = plt.plot(X_x, X_y)
     # plt.show()
     # plt.close()
 
     base = pick_df
     for iter in range(top_dists - 1):
         pick_df = pd.concat([pick_df, base]).reset_index().drop('index', 1)
-    final_df = pd.concat([pick_df, curve_df], axis = 1)
+    final_df = pd.concat([pick_df, curve_df], axis=1)
 
     return final_df
 
 # convert from normal text to snake case for all columns in df
+
+
 def util_snakify_cols(df):
     df.columns = [snakecase(col).replace('__', '_') for col in df.columns]
     return df
 
 # Describe DataFrame; ignore and specifics may be a list of strings of column names
 # Proportions need to work properly
-def describe(df, _MAX = 5, pick = 'none', ignore = ['-1'], specifics = ['-1'], top_dists = 5):
+
+
+def describe(df, _MAX=5, pick='none', ignore=['-1'], specifics=['-1'], top_dists=5):
     df = util_snakify_cols(df)
     pick = snakecase(pick).replace('__', '_')
 
@@ -312,24 +372,26 @@ def describe(df, _MAX = 5, pick = 'none', ignore = ['-1'], specifics = ['-1'], t
 
     # Drop ID column, only perform for specific features (if specified)
     if('id' in df.columns):
-        df.drop('id', 1, inplace = True)
+        df.drop('id', 1, inplace=True)
     if('empty_header_0' in df.columns):
-        df.drop('empty_header_0', 1, inplace = True)
+        df.drop('empty_header_0', 1, inplace=True)
 
     try:
         if('-1' not in ignore):
             ignore = [snakecase(ignore_val).replace('__', '_') for ignore_val in ignore]
             try:
-                df.drop(ignore, 1, inplace = True)
-            except Exception as e: # specified ignore col names not in DataFrame
-                print('#@ LINE ' + str(getframeinfo(currentframe()).lineno) + ': Incorrect ignore/specifics params, Exception ' + e)
+                df.drop(ignore, 1, inplace=True)
+            except Exception as e:  # specified ignore col names not in DataFrame
+                print('#@ LINE ' + str(getframeinfo(currentframe()).lineno) +
+                      ': Incorrect ignore/specifics params, Exception ' + e)
         if('-1' not in specifics):
             specifics = [snakecase(specifics_val).replace('__', '_') for specifics_val in specifics]
             try:
                 df = df[specifics]
-            except Exception as e: # specified specifics col names not in DataFrame
-                print('#@ LINE ' + str(getframeinfo(currentframe()).lineno) + ': Incorrect ignore/specifics params, Exception ' + e)
-    except:
+            except Exception as e:  # specified specifics col names not in DataFrame
+                print('#@ LINE ' + str(getframeinfo(currentframe()).lineno) +
+                      ': Incorrect ignore/specifics params, Exception ' + e)
+    except Exception:
         print('>>> Incorrect argument for "ignore" and/or "specifics" parameter(s)')
 
     print('DEBUG 2, PRINT ALL PROCESSED TRUE COLUMN NAMES: \n\t' + str(list(df.columns)))
@@ -345,7 +407,8 @@ def describe(df, _MAX = 5, pick = 'none', ignore = ['-1'], specifics = ['-1'], t
         # get frequency of each unique value in columns (string and numerical accepted) and delete
         freq_tracker = dict(list(Counter(df[df.columns[col_i]]).items())[:_MAX])
         # order dict by frequency
-        freq_tracker = {k: str(round((v/total_rows)*100.0, 3)) + '%' for k, v in sorted(freq_tracker.items(), key = lambda item: item[1], reverse = True)}
+        freq_tracker = {k: str(round((v / total_rows) * 100.0, 3)) + '%' for k,
+                        v in sorted(freq_tracker.items(), key=lambda item: item[1], reverse=True)}
         # re-structure dict -> list of strings, and add None keys if len < _MAX
         freq_tracker = [str(k) + ' (' + v + ')' for k, v in list(freq_tracker.items())]
         freq_tracker.extend([None] * (_MAX - len(freq_tracker)))
@@ -368,14 +431,14 @@ def describe(df, _MAX = 5, pick = 'none', ignore = ['-1'], specifics = ['-1'], t
     # n%unique for each cat feature
     cat_info = pd.DataFrame()
     cat_info['# unique'] = col_freq[0].astype(int)
-    cat_info.drop(list(quant_info.index), 0, inplace = True)
+    cat_info.drop(list(quant_info.index), 0, inplace=True)
 
     cat_info = util_modify_tops(cat_info, _MAX, all_features)
 
     print('@ LINE ' + str(getframeinfo(currentframe()).lineno) + ', CALCULATED CAT DATA SUCCESSFULLY.')
 
-    quant_info = quant_info.reset_index().rename(columns = {'index': 'feature'})
-    cat_info = cat_info.reset_index().rename(columns = {'index': 'feature'})
+    quant_info = quant_info.reset_index().rename(columns={'index': 'feature'})
+    cat_info = cat_info.reset_index().rename(columns={'index': 'feature'})
 
     if(pick == 'none'):
         index = np.random.choice(range(len(df.columns)))
@@ -385,12 +448,11 @@ def describe(df, _MAX = 5, pick = 'none', ignore = ['-1'], specifics = ['-1'], t
 
     return quant_info, cat_info, feature_freq_dist
 
+
 df = pd.read_csv('/Users/Ray/Documents/Python/Webber/Datasets/adult.data.csv')
-a, b, c = describe(df, pick = 'education_num')
+a, b, c = describe(df, pick='education_num')
 d = generate_dist_fits(df, 'capital_gain')
 d.to_html('all.html')
-
-
 
 
 #

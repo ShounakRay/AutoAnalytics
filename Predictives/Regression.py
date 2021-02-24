@@ -1,13 +1,23 @@
-import pandas as pd
-import numpy as np
-from stringcase import snakecase
+# @Author: Shounak Ray <Ray>
+# @Date:   14-Oct-2020 23:10:65:652  GMT-0600
+# @Email:  rijshouray@gmail.com
+# @Filename: Regression.py
+# @Last modified by:   Ray
+# @Last modified time: 24-Feb-2021 00:02:04:046  GMT-0700
+# @License: [Private IP]
+
+
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from stringcase import snakecase
 
 
 # convert from normal text to snake case for all columns in df
 def util_snakify_cols(df):
     df.columns = [snakecase(col).replace('__', '_') for col in df.columns]
     return df
+
 
 def reg(df, x, y, degree):
     df = util_snakify_cols(df)
@@ -21,9 +31,9 @@ def reg(df, x, y, degree):
     # ax1 = df_males.plot(kind='scatter', x='Height', y='Weight', color='blue', alpha=0.5, figsize=(10, 7))
     # df_females.plot(kind='scatter', x='Height', y='Weight', color='magenta', alpha=0.5, figsize=(10, 7), ax=ax1)
 
-    male_fit, male_res, rank_male, _, _, = np.polyfit(df_males[x], df_males[y], degree, full = True)
+    male_fit, male_res, rank_male, _, _, = np.polyfit(df_males[x], df_males[y], degree, full=True)
     male_corr = round(df_males.corr().iloc(0)[0][1], 3)
-    female_fit, female_res, rank_female, _, _,  = np.polyfit(df_females[x], df_females[y], degree, full = True)
+    female_fit, female_res, rank_female, _, _,  = np.polyfit(df_females[x], df_females[y], degree, full=True)
     female_corr = round(df_females.corr().iloc(0)[0][1], 3)
 
     fig, ax = plt.subplots()

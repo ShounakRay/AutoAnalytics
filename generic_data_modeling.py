@@ -1,29 +1,45 @@
-import pandas as pd
-import numpy as np
+# @Author: Shounak Ray <Ray>
+# @Date:   16-Oct-2020 13:10:14:142  GMT-0600
+# @Email:  rijshouray@gmail.com
+# @Filename: generic_data_modeling.py
+# @Last modified by:   Ray
+# @Last modified time: 24-Feb-2021 00:02:20:209  GMT-0700
+# @License: [Private IP]
+
+
 from collections import Counter
 from inspect import currentframe, getframeinfo
-from stringcase import snakecase
-import scipy
-import scipy.stats
-import scipy.signal
-import scipy.optimize
-import sklearn
-from sklearn.linear_model import LinearRegression
-from scipy.optimize import curve_fit
-from distfit import distfit
+
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import scipy
+import scipy.optimize
+import scipy.signal
+import scipy.stats
+import sklearn
+from distfit import distfit
+from scipy.optimize import curve_fit
+from sklearn.linear_model import LinearRegression
+from stringcase import snakecase
 
 # convert from normal text to snake case for all columns in df
+
+
 def util_snakify_cols(df):
     df.columns = [snakecase(col).replace('__', '_') for col in df.columns]
     return df
 
 # Normalize list
+
+
 def util_normalize(list):
-    list = (list - np.min(list))/(np.max(list) - np.min(list))
+    list = (list - np.min(list)) / (np.max(list) - np.min(list))
     return list
 
 # Ensure continuity of list of tuples based on tuple[0]
+
+
 def util_fill_lot(lot):
     X_zipl_func = lot
     X_zipl = X_zipl_func[:2]
@@ -38,6 +54,8 @@ def util_fill_lot(lot):
     return X, Y
 
 # get skew type string
+
+
 def util_skew_class(skew_score_func):
     if(skew_score_func == 0):
         skew_type_func = 'Perfect Normal'
@@ -50,14 +68,18 @@ def util_skew_class(skew_score_func):
     return skew_type_func
 
 # returns smoothened list
+
+
 def util_smooth(y, box_pts):
-    box = np.ones(box_pts)/box_pts
-    y_smooth = np.convolve(y, box, mode = 'same')
+    box = np.ones(box_pts) / box_pts
+    y_smooth = np.convolve(y, box, mode='same')
     return y_smooth
 
 # Returns best distribution and information associated
 # Possible bug: resolution may cause extra index (so lens don't match)
-def generate_dist_fits(df, pick, peak_max = 3, smooth_index = 5, top_dists = 3, trim_lower = 'None', trim_upper = 'None'):
+
+
+def generate_dist_fits(df, pick, peak_max=3, smooth_index=5, top_dists=3, trim_lower='None', trim_upper='None'):
     # Data Sanitation
     if(peak_max == 0):
         raise ValueError('XXXX peak_max argument is equal to 0, a non-permissible value XXXX')
@@ -73,10 +95,17 @@ def generate_dist_fits(df, pick, peak_max = 3, smooth_index = 5, top_dists = 3, 
     if(pick not in df.columns):
         raise ValueError('XXXX pick argument is NOT a feature inside the inputted dataset XXXX')
 
-    HYPER_ASSOC = {'distr': 'Distribution', 'RSS': 'Root Sum Squared', 'LLE': 'Locally Linear Embedding', 'loc': 'LOC: Mean', 'scale': 'SCALE: Standard Deviation', 'arg': 'Argument(s)'}
-    TAG_NAME_ASSOC = {'beta': 'Beta', 'genextreme': 'Generalized Extreme Value', 't': 'Student’s t', 'norm': 'Normal', 'lognorm': 'Lognormal ', 'gamma': 'Gamma', 'dweibull': 'Double Weibull', 'expon': 'Exponential', 'uniform': 'Uniform', 'pareto': 'Pareto'}
-    MODEL_PARAM_ASSOC = {'beta': ['a', 'b'], 'genextreme': ['c'], 't': ['° of freedom'], 'lognorm': ['s'], 'gamma': ['a'], 'dweibull': ['c'], 'pareto': ['b']}
-    NAME_OBJECT_ASSOC = {'beta': scipy.stats.beta, 'genextreme': scipy.stats.genextreme, 't': scipy.stats.t, 'norm': scipy.stats.norm, 'lognorm': scipy.stats.lognorm, 'gamma': scipy.stats.gamma, 'dweibull': scipy.stats.dweibull, 'expon': scipy.stats.expon, 'uniform': scipy.stats.uniform, 'pareto': scipy.stats.pareto}
+    HYPER_ASSOC = {'distr': 'Distribution', 'RSS': 'Root Sum Squared', 'LLE': 'Locally Linear Embedding',
+                   'loc': 'LOC: Mean', 'scale': 'SCALE: Standard Deviation', 'arg': 'Argument(s)'}
+    TAG_NAME_ASSOC = {'beta': 'Beta', 'genextreme': 'Generalized Extreme Value', 't': 'Student’s t',
+                      'norm': 'Normal', 'lognorm': 'Lognormal ', 'gamma': 'Gamma', 'dweibull': 'Double Weibull',
+                      'expon': 'Exponential', 'uniform': 'Uniform', 'pareto': 'Pareto'}
+    MODEL_PARAM_ASSOC = {'beta': ['a', 'b'], 'genextreme': ['c'], 't': ['° of freedom'], 'lognorm': ['s'],
+                         'gamma': ['a'], 'dweibull': ['c'], 'pareto': ['b']}
+    NAME_OBJECT_ASSOC = {'beta': scipy.stats.beta, 'genextreme': scipy.stats.genextreme, 't': scipy.stats.t,
+                         'norm': scipy.stats.norm, 'lognorm': scipy.stats.lognorm, 'gamma': scipy.stats.gamma,
+                         'dweibull': scipy.stats.dweibull, 'expon': scipy.stats.expon,
+                         'uniform': scipy.stats.uniform, 'pareto': scipy.stats.pareto}
     DEC_ROUND_NUM = 3
 
     # getattr(scipy.stats, dir(scipy.stats)[dir(scipy.stats).index('genextreme')])
@@ -99,7 +128,7 @@ def generate_dist_fits(df, pick, peak_max = 3, smooth_index = 5, top_dists = 3, 
     max = np.max(X)
     min = np.min(X)
     # For exisiting univariate data
-    counts = sorted(list(Counter(X).items()), key = lambda item: item[0])
+    counts = sorted(list(Counter(X).items()), key=lambda item: item[0])
     X_x = np.array([tup[0] for tup in counts])
     X_y = np.array([tup[1] for tup in counts])
 
@@ -119,14 +148,14 @@ def generate_dist_fits(df, pick, peak_max = 3, smooth_index = 5, top_dists = 3, 
         X_y_temp = util_smooth(X_y_temp, box)
         box += 5
         peaks = [(i, X_y_temp[i]) for i in scipy.signal.find_peaks(X_y_temp)[0]]
-    peak = sorted(peaks, key = lambda item: item[1])[0]
-    resolution = (max - min)/(len(X_x) - 1)
+    peak = sorted(peaks, key=lambda item: item[1])[0]
+    resolution = (max - min) / (len(X_x) - 1)
 
-    dist = distfit(alpha = 0.05, smooth = smooth_index)
+    dist = distfit(alpha=0.05, smooth=smooth_index)
     dist.fit_transform(X)
 
     top_models = dist.summary[:top_dists]
-    top_models = top_models.rename(columns = HYPER_ASSOC)
+    top_models = top_models.rename(columns=HYPER_ASSOC)
 
     for row_i in range(len(top_models)):
         dist_OBJECT = NAME_OBJECT_ASSOC[top_models['Distribution'][row_i]]
@@ -137,7 +166,8 @@ def generate_dist_fits(df, pick, peak_max = 3, smooth_index = 5, top_dists = 3, 
         params_val = ''
         for val_i in range(len(params)):
             if(val_i == len(params) - 1 - 1):
-                params_val += MODEL_PARAM_ASSOC[name_val][val_i] + ': ' + str(round(params[val_i], DEC_ROUND_NUM)) + '; '
+                params_val += MODEL_PARAM_ASSOC[name_val][val_i] + \
+                    ': ' + str(round(params[val_i], DEC_ROUND_NUM)) + '; '
             else:
                 params_val += MODEL_PARAM_ASSOC[name_val][val_i] + ': ' + str(round(params[val_i], DEC_ROUND_NUM))
 
@@ -145,12 +175,15 @@ def generate_dist_fits(df, pick, peak_max = 3, smooth_index = 5, top_dists = 3, 
 
         # For curve-fit plot
         x_top_dist = np.arange(min, max + resolution, resolution)
-        y_top_dist = dist_OBJECT.pdf(x_top_dist, (*params), scale = scale_val, loc = loc_val)
+        y_top_dist = dist_OBJECT.pdf(x_top_dist, (*params), scale=scale_val, loc=loc_val)
         y_top_dist = util_normalize(y_top_dist)
         # Store information about models in DataFrame
         new_col_names = ['model' + "_X", 'model' + "_Y", 'model_id', 'model_params']
-        new_df = pd.DataFrame(zip(x_top_dist, y_top_dist, [name_val] * len(y_top_dist), [params_val] * len(y_top_dist)), columns = new_col_names)
-        curve_df = pd.concat([curve_df, new_df], axis = 0).reset_index().drop('index', 1)
+        new_df = pd.DataFrame(zip(x_top_dist, y_top_dist,
+                                  [name_val] * len(y_top_dist),
+                                  [params_val] * len(y_top_dist)),
+                              columns=new_col_names)
+        curve_df = pd.concat([curve_df, new_df], axis=0).reset_index().drop('index', 1)
 
     curve_df['model_id'] = curve_df['model_id'].replace(TAG_NAME_ASSOC)
     pick_df = pd.DataFrame(zip(X_x, X_y))
@@ -170,7 +203,7 @@ def generate_dist_fits(df, pick, peak_max = 3, smooth_index = 5, top_dists = 3, 
     base = pick_df
     for iter in range(top_dists - 1):
         pick_df = pd.concat([pick_df, base]).reset_index().drop('index', 1)
-    final_df = pd.concat([pick_df, curve_df], axis = 1)
+    final_df = pd.concat([pick_df, curve_df], axis=1)
 
     return final_df
 
@@ -236,7 +269,6 @@ def generate_dist_fits(df, pick, peak_max = 3, smooth_index = 5, top_dists = 3, 
 # plt.close()
 # plt.plot(d['pick_X'], d['pick_Y'])
 # plt.plot(d['model_X'], d['model_Y'])
-
 
 
 #
