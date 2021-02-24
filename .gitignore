@@ -1,3 +1,6 @@
+# Ignore Data
+Reference Files/*.csv
+
 # Exclude all system files
 .DS_Store
 
