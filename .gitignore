@@ -10,6 +10,7 @@ Reference Files/*.csv
 
 # Exclude all sensitive data
 /Boardwalk Data
+/Secured Base Technologies
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
