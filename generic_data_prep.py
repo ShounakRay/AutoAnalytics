@@ -3,7 +3,7 @@
 # @Email:  rijshouray@gmail.com
 # @Filename: generic_data_prep.py
 # @Last modified by:   Ray
-# @Last modified time: 24-Feb-2021 00:02:43:430  GMT-0700
+# @Last modified time: 05-Mar-2021 16:03:24:245  GMT-0700
 # @License: [Private IP]
 
 
@@ -20,6 +20,11 @@ from distfit import distfit
 from stringcase import snakecase
 
 # Return cleaned DataFrame
+
+
+def papa_johns(df):
+    df = pd.DataFrame([1, 2, 3, 4]) * 2
+    return df
 
 
 def reset_df_index(df):
