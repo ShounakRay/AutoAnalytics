@@ -3,7 +3,7 @@
 # @Email:  rijshouray@gmail.com
 # @Filename: generic_data_prep.py
 # @Last modified by:   Ray
-# @Last modified time: 05-Mar-2021 17:03:99:998  GMT-0700
+# @Last modified time: 05-Mar-2021 17:03:11:119  GMT-0700
 # @License: [Private IP]
 
 
@@ -23,7 +23,7 @@ from stringcase import snakecase
 
 
 def papa_johns(df):
-    df = pd.DataFrame([1, 2, 3, 4]) * 1
+    df = pd.DataFrame([1, 2, 3, 4]) * 4
     return df
 
 
