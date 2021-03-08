@@ -1,3 +1,6 @@
+# Ignore Generated Dependency Graphs
+Dependency Graphs
+
 # Ignore Data
 Reference Files/*.csv
 
