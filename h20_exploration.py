@@ -3,21 +3,23 @@
 # @Email:  rijshouray@gmail.com
 # @Filename: h20_exploration.py
 # @Last modified by:   Ray
-# @Last modified time: 09-Mar-2021 11:03:81:816  GMT-0700
+# @Last modified time: 09-Mar-2021 12:03:80:808  GMT-0700
 # @License: [Private IP]
 
 
-# import subprocess
-import sys
+import subprocess
 
 import h2o
 from h2o.automl import H2OAutoML
 
-# version = subprocess.check_output(['java', '-version'], stderr=subprocess.STDOUT)
+version = subprocess.check_output(['java', '-version'],
+                                  stderr=subprocess.STDOUT).decode().split('"')[1].split('.')[0]
+if not (version >= 8 and version <= 14):
+    raise ValueError('STATUS: Java Version is not between 8 and 15.\n  \
+                      h2o instance will not be initialized')
 
 h2o.init()
-
-sys.version_info
+h2o.cluster().show_status()
 
 # Import a sample binary outcome train/test set into H2O
 train = h2o.import_file("https://s3.amazonaws.com/erin-data/higgs/higgs_train_10k.csv")
