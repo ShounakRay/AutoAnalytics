@@ -1,0 +1,1174 @@
+@Author: Shounak Ray <Ray>
+@Date:   09-Mar-2021 10:03:23:231  GMT-0700
+@Email:  rijshouray@gmail.com
+@Filename: docker_reference.txt
+@Last modified by:   Ray
+@Last modified time: 09-Mar-2021 10:03:20:200  GMT-0700
+@License: [Private IP]
+
+
+
+Last login: Tue Mar  9 10:15:07 on ttys003
+Ray@Whites-MacBook-Pro ~ % docker ps
+CONTAINER ID   IMAGE             COMMAND     CREATED         STATUS         PORTS     NAMES
+b4f0f64b8d14   python:3.8-slim   "python3"   6 seconds ago   Up 5 seconds             pedantic_jackson
+Ray@Whites-MacBook-Pro ~ % docker ps
+CONTAINER ID   IMAGE             COMMAND     CREATED         STATUS         PORTS     NAMES
+b4f0f64b8d14   python:3.8-slim   "python3"   9 seconds ago   Up 8 seconds             pedantic_jackson
+Ray@Whites-MacBook-Pro ~ % docker exec -ti b4f0f64b8d14 /bin/bash
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/# ls
+bin  boot  dev	etc  home  lib	lib64  media  mnt  opt	proc  root  run  sbin  srv  sys  tmp  usr  var
+root@b4f0f64b8d14:/# pip install h2o
+Collecting h2o
+  Downloading h2o-3.32.0.4.tar.gz (164.6 MB)
+     |████████████████████████████████| 164.6 MB 7.8 kB/s
+Collecting requests
+  Downloading requests-2.25.1-py2.py3-none-any.whl (61 kB)
+     |████████████████████████████████| 61 kB 9.5 MB/s
+Collecting tabulate
+  Downloading tabulate-0.8.9-py3-none-any.whl (25 kB)
+Collecting future
+  Downloading future-0.18.2.tar.gz (829 kB)
+     |████████████████████████████████| 829 kB 15.0 MB/s
+Collecting colorama>=0.3.8
+  Downloading colorama-0.4.4-py2.py3-none-any.whl (16 kB)
+Collecting idna<3,>=2.5
+  Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+     |████████████████████████████████| 58 kB 7.9 MB/s
+Collecting chardet<5,>=3.0.2
+  Downloading chardet-4.0.0-py2.py3-none-any.whl (178 kB)
+     |████████████████████████████████| 178 kB 11.9 MB/s
+Collecting urllib3<1.27,>=1.21.1
+  Downloading urllib3-1.26.3-py2.py3-none-any.whl (137 kB)
+     |████████████████████████████████| 137 kB 11.6 MB/s
+Collecting certifi>=2017.4.17
+  Downloading certifi-2020.12.5-py2.py3-none-any.whl (147 kB)
+     |████████████████████████████████| 147 kB 16.9 MB/s
+Building wheels for collected packages: h2o, future
+  Building wheel for h2o (setup.py) ... done
+  Created wheel for h2o: filename=h2o-3.32.0.4-py2.py3-none-any.whl size=164670979 sha256=b1dc21835b0d56bffc733b56a72cae350e0dc434d84c5fb34f17b107c6976115
+  Stored in directory: /root/.cache/pip/wheels/e6/0d/48/064de7f50a0e16e6a10c5b22a8e8fd3ef371a84b146b6e5a3e
+  Building wheel for future (setup.py) ... done
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491059 sha256=9cf475eb5955db709c81a37f8e715a239f9d51589d09c6917362ce2527d2b8e5
+  Stored in directory: /root/.cache/pip/wheels/8e/70/28/3d6ccd6e315f65f245da085482a2e1c7d14b90b30f239e2cf4
+Successfully built h2o future
+Installing collected packages: urllib3, idna, chardet, certifi, tabulate, requests, future, colorama, h2o
+Successfully installed certifi-2020.12.5 chardet-4.0.0 colorama-0.4.4 future-0.18.2 h2o-3.32.0.4 idna-2.10 requests-2.25.1 tabulate-0.8.9 urllib3-1.26.3
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/# apt install openjdk-11-jre-headless
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package openjdk-11-jre-headless
+root@b4f0f64b8d14:/# apt get update
+E: Invalid operation get
+root@b4f0f64b8d14:/# apt-get update
+Get:1 http://deb.debian.org/debian buster InRelease [122 kB]
+Get:2 http://security.debian.org/debian-security buster/updates InRelease [65.4 kB]
+Get:3 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
+Get:4 http://security.debian.org/debian-security buster/updates/main amd64 Packages [268 kB]
+Get:5 http://deb.debian.org/debian buster/main amd64 Packages [7907 kB]
+Get:6 http://deb.debian.org/debian buster-updates/main amd64 Packages [9504 B]
+Fetched 8423 kB in 2s (3558 kB/s)
+Reading package lists... Done
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/# apt install openjdk-11-jre-headless
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates-java dbus fontconfig-config fonts-dejavu-core java-common krb5-locales libapparmor1 libasound2 libasound2-data
+  libavahi-client3 libavahi-common-data libavahi-common3 libbsd0 libcups2 libdbus-1-3 libfontconfig1 libfreetype6 libgssapi-krb5-2
+  libjpeg62-turbo libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblcms2-2 libnspr4 libnss3 libpcsclite1 libpng16-16 libx11-6
+  libx11-data libxau6 libxcb1 libxdmcp6 libxext6 libxi6 libxrender1 libxtst6 lsb-base sensible-utils ucf x11-common
+Suggested packages:
+  default-dbus-session-bus | dbus-session-bus default-jre libasound2-plugins alsa-utils cups-common krb5-doc krb5-user liblcms2-utils
+  pcscd libnss-mdns fonts-dejavu-extra fonts-ipafont-gothic fonts-ipafont-mincho fonts-wqy-microhei | fonts-wqy-zenhei fonts-indic
+The following NEW packages will be installed:
+  ca-certificates-java dbus fontconfig-config fonts-dejavu-core java-common krb5-locales libapparmor1 libasound2 libasound2-data
+  libavahi-client3 libavahi-common-data libavahi-common3 libbsd0 libcups2 libdbus-1-3 libfontconfig1 libfreetype6 libgssapi-krb5-2
+  libjpeg62-turbo libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblcms2-2 libnspr4 libnss3 libpcsclite1 libpng16-16 libx11-6
+  libx11-data libxau6 libxcb1 libxdmcp6 libxext6 libxi6 libxrender1 libxtst6 lsb-base openjdk-11-jre-headless sensible-utils ucf
+  x11-common
+0 upgraded, 42 newly installed, 0 to remove and 2 not upgraded.
+Need to get 46.0 MB of archives.
+After this operation, 194 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://deb.debian.org/debian buster/main amd64 sensible-utils all 0.0.12 [15.8 kB]
+Get:2 http://deb.debian.org/debian buster/main amd64 libapparmor1 amd64 2.13.2-10 [94.7 kB]
+Get:3 http://deb.debian.org/debian buster/main amd64 libdbus-1-3 amd64 1.12.20-0+deb10u1 [215 kB]
+Get:4 http://deb.debian.org/debian buster/main amd64 dbus amd64 1.12.20-0+deb10u1 [236 kB]
+Get:5 http://deb.debian.org/debian buster/main amd64 krb5-locales all 1.17-3+deb10u1 [95.4 kB]
+Get:6 http://deb.debian.org/debian buster/main amd64 ucf all 3.0038+nmu1 [69.0 kB]
+Get:7 http://deb.debian.org/debian buster/main amd64 java-common all 0.71 [14.4 kB]
+Get:8 http://deb.debian.org/debian buster/main amd64 libavahi-common-data amd64 0.7-4+b1 [122 kB]
+Get:9 http://deb.debian.org/debian buster/main amd64 libavahi-common3 amd64 0.7-4+b1 [54.6 kB]
+Get:10 http://deb.debian.org/debian buster/main amd64 libavahi-client3 amd64 0.7-4+b1 [58.1 kB]
+Get:11 http://deb.debian.org/debian buster/main amd64 libkeyutils1 amd64 1.6-6 [15.0 kB]
+Get:12 http://deb.debian.org/debian buster/main amd64 libkrb5support0 amd64 1.17-3+deb10u1 [65.8 kB]
+Get:13 http://deb.debian.org/debian buster/main amd64 libk5crypto3 amd64 1.17-3+deb10u1 [122 kB]
+Get:14 http://deb.debian.org/debian buster/main amd64 libkrb5-3 amd64 1.17-3+deb10u1 [369 kB]
+Get:15 http://deb.debian.org/debian buster/main amd64 libgssapi-krb5-2 amd64 1.17-3+deb10u1 [158 kB]
+Adding debian:Atos_TrustedRoot_2011.pem
+Adding debian:GTS_Root_R2.pem
+Adding debian:AffirmTrust_Commercial.pem
+Adding debian:ISRG_Root_X1.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2015.pem
+Adding debian:Sonera_Class_2_Root_CA.pem
+Adding debian:TWCA_Root_Certification_Authority.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem
+Adding debian:TrustCor_RootCert_CA-2.pem
+Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+Adding debian:Go_Daddy_Class_2_CA.pem
+Adding debian:Security_Communication_RootCA2.pem
+done.
+Processing triggers for libc-bin (2.28-10) ...
+Processing triggers for ca-certificates (20200601~deb10u2) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+
+done.
+done.
+Setting up openjdk-11-jre-headless:amd64 (11.0.9.1+1-1~deb10u2) ...
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/rmid to provide /usr/bin/rmid (rmid) in auto mode
+update-alternatives: error: error creating symbolic link '/usr/share/man/man1/rmid.1.gz.dpkg-tmp': No such file or directory
+dpkg: error processing package openjdk-11-jre-headless:amd64 (--configure):
+ installed openjdk-11-jre-headless:amd64 package post-installation script subprocess returned error exit status 2
+Errors were encountered while processing:
+ openjdk-11-jre-headless:amd64
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  libzstd1 openssl
+2 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+1 not fully installed or removed.
+Need to get 1080 kB of archives.
+After this operation, 4096 B disk space will be freed.
+Get:1 http://security.debian.org/debian-security buster/updates/main amd64 libzstd1 amd64 1.3.8+dfsg-3+deb10u2 [237 kB]
+Get:2 http://security.debian.org/debian-security buster/updates/main amd64 openssl amd64 1.1.1d-0+deb10u5 [844 kB]
+Fetched 1080 kB in 0s (3811 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+(Reading database ... 8290 files and directories currently installed.)
+Preparing to unpack .../libzstd1_1.3.8+dfsg-3+deb10u2_amd64.deb ...
+Unpacking libzstd1:amd64 (1.3.8+dfsg-3+deb10u2) over (1.3.8+dfsg-3) ...
+Setting up libzstd1:amd64 (1.3.8+dfsg-3+deb10u2) ...
+(Reading database ... 8290 files and directories currently installed.)
+Processing triggers for libc-bin (2.28-10) ...
+Errors were encountered while processing:
+ openjdk-11-jre-headless:amd64
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/# apt install openjdk-14-jdk
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package openjdk-14-jdk
+root@b4f0f64b8d14:/# apt upgrade
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Calculating upgrade... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+1 not fully installed or removed.
+After this operation, 0 B of additional disk space will be used.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/# apt update
+Hit:1 http://security.debian.org/debian-security buster/updates InRelease
+Hit:2 http://deb.debian.org/debian buster InRelease
+Hit:3 http://deb.debian.org/debian buster-updates InRelease
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+All packages are up to date.
+root@b4f0f64b8d14:/# apt upgrade
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Calculating upgrade... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+1 not fully installed or removed.
+After this operation, 0 B of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Setting up openjdk-11-jre-headless:amd64 (11.0.9.1+1-1~deb10u2) ...
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/rmid to provide /usr/bin/rmid (rmid) in auto mode
+update-alternatives: error: error creating symbolic link '/usr/share/man/man1/rmid.1.gz.dpkg-tmp': No such file or directory
+dpkg: error processing package openjdk-11-jre-headless:amd64 (--configure):
+ installed openjdk-11-jre-headless:amd64 package post-installation script subprocess returned error exit status 2
+Errors were encountered while processing:
+ openjdk-11-jre-headless:amd64
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/# apt install openjdk-14-jdk
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package openjdk-14-jdk
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/#
+root@b4f0f64b8d14:/# exit
+
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker ps
+CONTAINER ID   IMAGE             COMMAND     CREATED         STATUS         PORTS     NAMES
+b4f0f64b8d14   python:3.8-slim   "python3"   5 minutes ago   Up 5 minutes             pedantic_jackson
+Ray@Whites-MacBook-Pro ~ % docker stop b4f0f64b8d14
+b4f0f64b8d14
+
+Ray@Whites-MacBook-Pro ~ % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+Ray@Whites-MacBook-Pro ~ % docker ps -a
+CONTAINER ID   IMAGE             COMMAND     CREATED         STATUS                     PORTS     NAMES
+5cb5bfa6307c   python:3.8-slim   "python3"   8 minutes ago   Exited (0) 8 minutes ago             dazzling_poincare
+Ray@Whites-MacBook-Pro ~ % docker system prune
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+5cb5bfa6307c26916e5092523be642fd1a8f86e3eb2e97d61f9f0266be30fcd8
+
+Total reclaimed space: 156.9kB
+Ray@Whites-MacBook-Pro ~ % docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+
+Ray@Whites-MacBook-Pro ~ % docker image
+
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+
+Ray@Whites-MacBook-Pro ~ % docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/Ray/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default
+                           context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/Ray/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/Ray/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/Ray/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  app*        Docker App (Docker Inc., v0.9.1-beta3)
+  builder     Manage builds
+  buildx*     Build with BuildKit (Docker Inc., v0.5.1-docker)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.5.0)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+Ray@Whites-MacBook-Pro ~ % d
+zsh: command not found: d
+
+Ray@Whites-MacBook-Pro ~ % docker images
+REPOSITORY   TAG        IMAGE ID       CREATED       SIZE
+python       3.8-slim   5bacf0a78697   2 weeks ago   118MB
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+
+Last login: Tue Mar  9 10:06:55 on ttys000
+Ray@Whites-MacBook-Pro ~ % docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/Ray/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/Ray/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/Ray/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/Ray/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker ps
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+Ray@Whites-MacBook-Pro ~ % brew install --cask adoptopenjdk14
+
+Error: Cask 'adoptopenjdk14' is unavailable: No Cask with this name exists.
+Ray@Whites-MacBook-Pro ~ % brew install adoptopenjdk14
+
+==> Searching for similarly named formulae...
+Error: No similarly named formulae found.
+Error: No available formula or cask with the name "adoptopenjdk14".
+==> Searching for a previously deleted formula (in the last month)...
+Error: No previously deleted formula found.
+==> Searching taps on GitHub...
+Error: No formulae found in taps.
+Ray@Whites-MacBook-Pro ~ % brew update
+Already up-to-date.
+Ray@Whites-MacBook-Pro ~ % brew install --cask docker
+==> Downloading https://desktop.docker.com/mac/stable/amd64/61626/Docker.dmg
+######################################################################## 100.0%
+==> Installing Cask docker
+==> Moving App 'Docker.app' to '/Applications/Docker.app'
+🍺  docker was successfully installed!
+Ray@Whites-MacBook-Pro ~ % docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/Ray/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default
+                           context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/Ray/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/Ray/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/Ray/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker images
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker
+d
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/Ray/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default
+                           context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/Ray/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/Ray/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/Ray/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  app*        Docker App (Docker Inc., v0.9.1-beta3)
+  builder     Manage builds
+  buildx*     Build with BuildKit (Docker Inc., v0.5.1-docker)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.5.0)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+Ray@Whites-MacBook-Pro ~ % docker ps
+Error response from daemon: dial unix docker.raw.sock: connect: no such file or directory
+Ray@Whites-MacBook-Pro ~ % docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/Ray/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default
+                           context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/Ray/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/Ray/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/Ray/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  app*        Docker App (Docker Inc., v0.9.1-beta3)
+  builder     Manage builds
+  buildx*     Build with BuildKit (Docker Inc., v0.5.1-docker)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.5.0)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+Ray@Whites-MacBook-Pro ~ % docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/Ray/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default
+                           context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/Ray/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/Ray/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/Ray/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  app*        Docker App (Docker Inc., v0.9.1-beta3)
+  builder     Manage builds
+  buildx*     Build with BuildKit (Docker Inc., v0.5.1-docker)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.5.0)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+Ray@Whites-MacBook-Pro ~ % docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+Ray@Whites-MacBook-Pro ~ % docker build python:3.8-slim
+unable to prepare context: path "python:3.8-slim" not found
+Ray@Whites-MacBook-Pro ~ % docker run python:3.8-slim
+Unable to find image 'python:3.8-slim' locally
+3.8-slim: Pulling from library/python
+45b42c59be33: Pull complete
+f875e16ab19c: Pull complete
+3e2c62b3a6f9: Pull complete
+c6acb963480f: Pull complete
+6b5baef197ea: Pull complete
+Digest: sha256:60d8ae7490dc6be75ad9ed8b504cd8835be12f9a828b2b9fe0e19e4d66b6f636
+Status: Downloaded newer image for python:3.8-slim
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker images
+REPOSITORY   TAG        IMAGE ID       CREATED       SIZE
+python       3.8-slim   5bacf0a78697   2 weeks ago   118MB
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker run -it --rm python:3.8-slim
+Python 3.8.8 (default, Feb 19 2021, 18:07:06)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+>>>
+>>>
+>>> import pandas
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'pandas'
+>>>
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker images
+REPOSITORY   TAG        IMAGE ID       CREATED       SIZE
+python       3.8-slim   5bacf0a78697   2 weeks ago   118MB
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+Ray@Whites-MacBook-Pro ~ % docker ps -a
+CONTAINER ID   IMAGE             COMMAND     CREATED              STATUS                          PORTS     NAMES
+5cb5bfa6307c   python:3.8-slim   "python3"   About a minute ago   Exited (0) About a minute ago             dazzling_poincare
+Ray@Whites-MacBook-Pro ~ % docker images
+REPOSITORY   TAG        IMAGE ID       CREATED       SIZE
+python       3.8-slim   5bacf0a78697   2 weeks ago   118MB
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker ps -a
+CONTAINER ID   IMAGE             COMMAND     CREATED              STATUS                          PORTS     NAMES
+5cb5bfa6307c   python:3.8-slim   "python3"   About a minute ago   Exited (0) About a minute ago             dazzling_poincare
+Ray@Whites-MacBook-Pro ~ % docker ps --all
+CONTAINER ID   IMAGE             COMMAND     CREATED              STATUS                          PORTS     NAMES
+5cb5bfa6307c   python:3.8-slim   "python3"   About a minute ago   Exited (0) About a minute ago             dazzling_poincare
+Ray@Whites-MacBook-Pro ~ % docker exec -it 5cb5bfa6307c /bin/bash
+Error response from daemon: Container 5cb5bfa6307c26916e5092523be642fd1a8f86e3eb2e97d61f9f0266be30fcd8 is not running
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % docker ps --all
+CONTAINER ID   IMAGE             COMMAND     CREATED         STATUS                     PORTS     NAMES
+5cb5bfa6307c   python:3.8-slim   "python3"   2 minutes ago   Exited (0) 2 minutes ago             dazzling_poincare
+Ray@Whites-MacBook-Pro ~ % docker run -it --rm python:3.8-slim
+Python 3.8.8 (default, Feb 19 2021, 18:07:06)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import h2o
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'h2o'
+>>>
+>>>
+>>>
+>>> h2o
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'h2o' is not defined
+>>>
+>>>
+>>> import h2o
+>>> import h2o
+>>> h2o.init()
+Checking whether there is an H2O instance running at http://localhost:54321 ..... not found.
+Attempting to start a local H2O server...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/h2o/h2o.py", line 285, in init
+    h2oconn = H2OConnection.open(url=url, ip=ip, port=port, name=name, https=https,
+  File "/usr/local/lib/python3.8/site-packages/h2o/backend/connection.py", line 384, in open
+    conn._cluster = conn._test_connection(retries, messages=_msgs)
+  File "/usr/local/lib/python3.8/site-packages/h2o/backend/connection.py", line 683, in _test_connection
+    raise H2OConnectionError("Could not establish link to the H2O cloud %s after %d retries\n%s"
+h2o.exceptions.H2OConnectionError: Could not establish link to the H2O cloud http://localhost:54321 after 5 retries
+[34:01.37] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f1b0c841e20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[34:01.57] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f1b0b4a9b20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[34:01.78] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f1b0b4403d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[34:01.98] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f1b0b440d30>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[34:02.19] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f1b0b460580>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/local/lib/python3.8/site-packages/h2o/h2o.py", line 301, in init
+    hs = H2OLocalServer.start(nthreads=nthreads, enable_assertions=enable_assertions, max_mem_size=mmax,
+  File "/usr/local/lib/python3.8/site-packages/h2o/backend/server.py", line 141, in start
+    hs._launch_server(port=port, baseport=baseport, nthreads=int(nthreads), ea=enable_assertions,
+  File "/usr/local/lib/python3.8/site-packages/h2o/backend/server.py", line 276, in _launch_server
+    java = self._find_java()
+  File "/usr/local/lib/python3.8/site-packages/h2o/backend/server.py", line 441, in _find_java
+    raise H2OStartupError("Cannot find Java. Please install the latest JRE from\n"
+h2o.exceptions.H2OStartupError: Cannot find Java. Please install the latest JRE from
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+>>>
+>>>
+>>>
+>>>
+>>> %                                                                                                                                  Ray@Whites-MacBook-Pro ~ %
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+Last login: Tue Mar  9 10:06:57 on ttys001
+Ray@Whites-MacBook-Pro ~ % brew search java
+==> Formulae
+app-engine-java            java ✔                     javacc                     jslint4java                pdftk-java
+google-java-format         java11                     javarepl                   libreadline-java
+==> Casks
+eclipse-java                      eclipse-javascript                netbeans-java-se                  oracle-jdk-javadoc
+eclipse-java                      netbeans-java-ee                  netbeans-java-se                  homebrew/cask-versions/java-beta
+eclipse-javascript                netbeans-java-ee                  oracle-jdk-javadoc
+
+If you meant "java" specifically:
+It was migrated from homebrew/cask to homebrew/core.
+Ray@Whites-MacBook-Pro ~ % brew info java
+openjdk: stable 15.0.2 (bottled) [keg-only]
+Development kit for the Java programming language
+https://openjdk.java.net/
+/usr/local/Cellar/openjdk/15.0.2 (614 files, 324.9MB)
+  Poured from bottle on 2021-03-09 at 10:02:59
+From: https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/openjdk.rb
+License: Cannot Represent
+==> Dependencies
+Build: autoconf ✔
+==> Caveats
+For the system Java wrappers to find this JDK, symlink it with
+  sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
+openjdk is keg-only, which means it was not symlinked into /usr/local,
+because macOS provides similar software and installing this software in
+parallel can cause all kinds of trouble.
+
+If you need to have openjdk first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find openjdk you may need to set:
+  export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+
+==> Analytics
+install: 144,107 (30 days), 378,706 (90 days), 1,499,003 (365 days)
+install-on-request: 45,336 (30 days), 122,794 (90 days), 397,080 (365 days)
+build-error: 0 (30 days)
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % brew search adoptopenjdk
+
+==> Casks
+adoptopenjdk                                                        adoptopenjdk
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % brew install adoptopenjdk14
+==> Searching for similarly named formulae...
+Error: No similarly named formulae found.
+Error: No available formula or cask with the name "adoptopenjdk14".
+==> Searching for a previously deleted formula (in the last month)...
+Error: No previously deleted formula found.
+==> Searching taps on GitHub...
+Error: No formulae found in taps.
+Ray@Whites-MacBook-Pro ~ % brew install adoptopenjdk14-jre
+==> Searching for similarly named formulae...
+Error: No similarly named formulae found.
+Error: No available formula or cask with the name "adoptopenjdk14-jre".
+==> Searching for a previously deleted formula (in the last month)...
+Error: No previously deleted formula found.
+==> Searching taps on GitHub...
+Error: No formulae found in taps.
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % brew info java
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % brew tap adoptopenjdk/openjdk
+==> Tapping adoptopenjdk/openjdk
+Cloning into '/usr/local/Homebrew/Library/Taps/adoptopenjdk/homebrew-openjdk'...
+remote: Enumerating objects: 1936, done.
+remote: Total 1936 (delta 0), reused 0 (delta 0), pack-reused 1936
+Receiving objects: 100% (1936/1936), 358.15 KiB | 914.00 KiB/s, done.
+Resolving deltas: 100% (1380/1380), done.
+Tapped 43 casks (81 files, 525.9KB).
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % brew install adoptopenjdk14
+==> Downloading https://github.com/AdoptOpenJDK/openjdk14-binaries/releases/download/jdk-14.0.2%2B12/OpenJDK14U-jdk_x64_mac_hotspot_14.
+==> Downloading from https://github-releases.githubusercontent.com/233878254/76a12100-c74a-11ea-9f22-d3fa20a5fb9f?X-Amz-Algorithm=AWS4-
+######################################################################## 100.0%
+==> Installing Cask adoptopenjdk14
+==> Running installer for adoptopenjdk14; your password may be necessary.
+Package installers may write to any location; options such as `--appdir` are ignored.
+Password:
+installer: Package name is AdoptOpenJDK
+installer: Installing at base path /
+installer: The install was successful.
+package-id: net.adoptopenjdk.14.jdk
+version: 14.0.2+12
+volume: /
+location: Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk
+install-time: 1615310074
+🍺  adoptopenjdk14 was successfully installed!
+Ray@Whites-MacBook-Pro ~ % python3
+Python 3.8.6 (default, Jan  9 2021, 17:41:51)
+[Clang 12.0.0 (clang-1200.0.32.28)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import h2o
+h2>>> h2o.init()
+Checking whether there is an H2O instance running at http://localhost:54321 ..... not found.
+Attempting to start a local H2O server...
+  Java Version: java version "15.0.2" 2021-01-19; Java(TM) SE Runtime Environment (build 15.0.2+7-27); Java HotSpot(TM) 64-Bit Server VM (build 15.0.2+7-27, mixed mode, sharing)
+  Starting server from /Users/Ray/.pyenv/versions/3.8.6/lib/python3.8/site-packages/h2o/backend/bin/h2o.jar
+  Ice root: /var/folders/fb/zlxyxw2s0nq46xw9nqyxvf1w0000gp/T/tmpso0ulf5q
+  JVM stdout: /var/folders/fb/zlxyxw2s0nq46xw9nqyxvf1w0000gp/T/tmpso0ulf5q/h2o_Ray_started_from_python.out
+  JVM stderr: /var/folders/fb/zlxyxw2s0nq46xw9nqyxvf1w0000gp/T/tmpso0ulf5q/h2o_Ray_started_from_python.err
+Traceback (most recent call last):
+  File "/Users/Ray/.pyenv/versions/3.8.6/lib/python3.8/site-packages/h2o/h2o.py", line 285, in init
+    h2oconn = H2OConnection.open(url=url, ip=ip, port=port, name=name, https=https,
+  File "/Users/Ray/.pyenv/versions/3.8.6/lib/python3.8/site-packages/h2o/backend/connection.py", line 384, in open
+    conn._cluster = conn._test_connection(retries, messages=_msgs)
+  File "/Users/Ray/.pyenv/versions/3.8.6/lib/python3.8/site-packages/h2o/backend/connection.py", line 683, in _test_connection
+    raise H2OConnectionError("Could not establish link to the H2O cloud %s after %d retries\n%s"
+h2o.exceptions.H2OConnectionError: Could not establish link to the H2O cloud http://localhost:54321 after 5 retries
+[15:02.05] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x111cb9040>: Failed to establish a new connection: [Errno 61] Connection refused'))
+[15:02.26] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x111cb9850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+[15:02.46] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x111cb98e0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+[15:02.67] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x111cc70a0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+[15:02.88] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Cloud (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x111cc78b0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Users/Ray/.pyenv/versions/3.8.6/lib/python3.8/site-packages/h2o/h2o.py", line 301, in init
+    hs = H2OLocalServer.start(nthreads=nthreads, enable_assertions=enable_assertions, max_mem_size=mmax,
+  File "/Users/Ray/.pyenv/versions/3.8.6/lib/python3.8/site-packages/h2o/backend/server.py", line 141, in start
+    hs._launch_server(port=port, baseport=baseport, nthreads=int(nthreads), ea=enable_assertions,
+  File "/Users/Ray/.pyenv/versions/3.8.6/lib/python3.8/site-packages/h2o/backend/server.py", line 362, in _launch_server
+    raise H2OServerError(error_message)
+h2o.exceptions.H2OServerError: Server process terminated because of unsupported Java version: Only Java versions 8-14 are supported, system version is 15.0.2
+
+>>>
+Ray@Whites-MacBook-Pro ~ % echo 'export PATH="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home/bin:$PATH"' >> ~/.zshrc
+
+Ray@Whites-MacBook-Pro ~ % source ~/.zshrc
+
+Ray@Whites-MacBook-Pro ~ % java --version
+openjdk 14.0.2 2020-07-14
+OpenJDK Runtime Environment AdoptOpenJDK (build 14.0.2+12)
+OpenJDK 64-Bit Server VM AdoptOpenJDK (build 14.0.2+12, mixed mode, sharing)
+Ray@Whites-MacBook-Pro ~ % python3
+Python 3.8.6 (default, Jan  9 2021, 17:41:51)
+[Clang 12.0.0 (clang-1200.0.32.28)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import h2o
+h2>>> h2o.init()
+Checking whether there is an H2O instance running at http://localhost:54321 ..... not found.
+Attempting to start a local H2O server...
+  Java Version: openjdk version "14.0.2" 2020-07-14; OpenJDK Runtime Environment AdoptOpenJDK (build 14.0.2+12); OpenJDK 64-Bit Server VM AdoptOpenJDK (build 14.0.2+12, mixed mode, sharing)
+  Starting server from /Users/Ray/.pyenv/versions/3.8.6/lib/python3.8/site-packages/h2o/backend/bin/h2o.jar
+  Ice root: /var/folders/fb/zlxyxw2s0nq46xw9nqyxvf1w0000gp/T/tmpir3s_hbm
+  JVM stdout: /var/folders/fb/zlxyxw2s0nq46xw9nqyxvf1w0000gp/T/tmpir3s_hbm/h2o_Ray_started_from_python.out
+  JVM stderr: /var/folders/fb/zlxyxw2s0nq46xw9nqyxvf1w0000gp/T/tmpir3s_hbm/h2o_Ray_started_from_python.err
+  Server is running at http://127.0.0.1:54321
+Connecting to H2O server at http://127.0.0.1:54321 ... successful.
+--------------------------  ------------------------------------------------------------------
+H2O_cluster_uptime:         02 secs
+H2O_cluster_timezone:       America/Edmonton
+H2O_data_parsing_timezone:  UTC
+H2O_cluster_version:        3.32.0.4
+H2O_cluster_version_age:    1 month and 7 days
+H2O_cluster_name:           H2O_from_python_Ray_7s4cx6
+H2O_cluster_total_nodes:    1
+H2O_cluster_free_memory:    4 Gb
+H2O_cluster_total_cores:    8
+H2O_cluster_allowed_cores:  8
+H2O_cluster_status:         accepting new members, healthy
+H2O_connection_url:         http://127.0.0.1:54321
+H2O_connection_proxy:       {"http": null, "https": null}
+H2O_internal_security:      False
+H2O_API_Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4
+Python_version:             3.8.6 final
+--------------------------  ------------------------------------------------------------------
+>>>
+Closing connection _sid_9382 at exit
+H2O session _sid_9382 closed.
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ %
+Ray@Whites-MacBook-Pro ~ % python --version
+Python 3.8.6
+Ray@Whites-MacBook-Pro ~ %
