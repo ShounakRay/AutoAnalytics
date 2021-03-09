@@ -3,7 +3,7 @@
 # @Email:  rijshouray@gmail.com
 # @Filename: h20_exploration.py
 # @Last modified by:   Ray
-# @Last modified time: 08-Mar-2021 14:03:72:724  GMT-0700
+# @Last modified time: 08-Mar-2021 17:03:93:937  GMT-0700
 # @License: [Private IP]
 
 
@@ -12,14 +12,14 @@ from __future__ import print_function
 from builtins import range
 
 import h2o
-from h2o.estimators.deeplearning import H2OAutoEncoderEstimator
+from h2o.estimators.deeplearning import H2OAutoEncoderEstimat
 
 dir(h2o)
 
 print("Deep Learning Anomaly Detection MNIST")
 
 train = h2o.import_file(pyunit_utils.locate("bigdata/laptop/mnist/train.csv.gz"))
-test = h2o.import_file(pyunit_utils.locate("bigdata/laptop/mnist/test.csv.gz"))
+test = h2o.import_file(pyunit_utils.locate("bigdata/laptop/mnist/test.csv.gz"))h
 
 predictors = list(range(0, 784))
 resp = 784
